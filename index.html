@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            overflow-x: hidden; /* Skryje vodorovný scrollbar */
         }
 
         header {
@@ -17,10 +18,6 @@
             color: #fff;
             text-align: center;
             padding: 1em 0;
-            position: fixed;
-            width: 100%;
-            top: -60px; /* Hlavicka je puvodne skryta */
-            transition: top 0.3s; /* Plynulé přechody */
         }
 
         section {
@@ -31,47 +28,65 @@
             width: 100%;
             height: 100vh;
             object-fit: cover;
-            display: none; /* Fotografie jsou na začátku skryté */
+            display: none;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Foto Ioblic</h1>
+        <h1>Váš Jméno - Video Maker a Fotograf</h1>
     </header>
 
-    <section id="portfolio">
-        <!-- Zde vložte kód pro zobrazení fotografií s unikátními třídami pro každou fotografii -->
-
-        <img class="photo photo1" src="img1.jpeg" alt="Photo 1">
-        <img class="photo photo2" src="img2.jpeg" alt="Photo 2">
-        <!-- Další fotografie... -->
-
+    <section id="content">
+        <h2>Vítejte na mé stránce!</h2>
+        <p>Zde můžete napsat další informace nebo uvítací text.</p>
     </section>
 
+    <!-- Zde můžete přidat další obsah a text -->
+
+    <!-- Příklad fotografií -->
+    <img class="photo" src="img1.jpeg" alt="Photo 1">
+    <img class="photo" src="img2.jpeg" alt="Photo 2">
+    <!-- Další fotografie... -->
+
+    <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const photos = document.querySelectorAll('.photo');
-            const header = document.querySelector('header');
+        const photos = document.querySelectorAll('.photo');
+        const content = document.getElementById('content');
 
-            let currentIndex = 0;
+        let scrollCount = 0;
 
-            function showNextPhoto() {
-                if (currentIndex < photos.length) {
-                    photos[currentIndex].style.display = 'block';
-                    setTimeout(() => {
-                        photos[currentIndex].style.display = 'none';
-                        currentIndex++;
-                        showNextPhoto();
-                    }, 2000); // Čas, po kterém se změní fotografie (2 sekundy v tomto příkladu)
-                } else {
-                    // Po zobrazení všech fotografií se zobrazí hlavička
-                    header.style.top = '0';
-                }
+        function handleScroll() {
+            scrollCount++;
+            if (scrollCount === 1) {
+                gsap.to(content, { opacity: 0, duration: 1, onComplete: showPhotos });
             }
+        }
 
-            showNextPhoto();
-        });
+        function showPhotos() {
+            photos.forEach((photo, index) => {
+                gsap.to(photo, {
+                    opacity: 1,
+                    duration: 0.5,
+                    delay: index * 0.5,
+                    onComplete: () => {
+                        if (index === photos.length - 1) {
+                            setTimeout(() => {
+                                gsap.to(content, { opacity: 1, duration: 1 });
+                                scrollCount = 0;
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+        }
+
+        function scrollToTop() {
+            gsap.to(window, { duration: 1, scrollTo: { y: 0 } });
+        }
+
+        document.addEventListener('scroll', handleScroll);
+        window.addEventListener('unload', scrollToTop);
     </script>
 </body>
 </html>
