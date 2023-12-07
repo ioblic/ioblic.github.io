@@ -48,12 +48,14 @@
             cursor: pointer;
         }
 
-        .arrow-left {
-            left: 10px;
+        .arrow-up {
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .arrow-right {
-            right: 10px;
+        .arrow-down {
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
         }
     </style>
 </head>
@@ -71,13 +73,13 @@
 
     <div class="photo-container">
         <!-- Příklad fotografií -->
-        <img class="photo" src="path/to/photo1.jpg" alt="Photo 1">
-        <img class="photo" src="path/to/photo2.jpg" alt="Photo 2">
+        <img class="photo" src="img1.jpeg" alt="Photo 1">
+        <img class="photo" src="img2.jpeg" alt="Photo 2">
         <!-- Další fotografie... -->
     </div>
 
-    <div class="arrow arrow-left" onclick="prevPhoto()">⬅️</div>
-    <div class="arrow arrow-right" onclick="nextPhoto()">➡️</div>
+    <div class="arrow arrow-up" onclick="prevPhoto()">⬆️</div>
+    <div class="arrow arrow-down" onclick="nextPhoto()">⬇️</div>
 
     <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
     <script>
