@@ -3,117 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Váš Název - Video Maker a Fotograf</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            overflow-x: hidden; /* Skryje vodorovný scrollbar */
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
-
-        section {
-            position: relative;
-            padding: 2em;
-            text-align: center;
-        }
-
-        .photo-container {
-            display: flex;
-            overflow: hidden;
-            width: 100vw; /* Full width of the viewport */
-            transform: rotate(-45deg) translateX(calc(-50% + 2em)) translateY(calc(-50% + 2em));
-            transform-origin: 0 0; /* Set the origin to the top-left corner */
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .photo {
-            width: 100vh;
-            height: 100vh;
-            object-fit: cover;
-            flex-shrink: 0;
-            transform: rotate(45deg); /* Rotate the image back to normal */
-        }
-
-        .arrow-container {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-
-        .arrow {
-            font-size: 2em;
-            color: #333;
-            cursor: pointer;
-            pointer-events: all;
-        }
-    </style>
+    <title>Mozaika Galerie</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="color-thief.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Váš Jméno - Video Maker a Fotograf</h1>
-    </header>
-
-    <section id="content">
-        <h2>Vítejte na mé stránce!</h2>
-        <p>Zde můžete napsat další informace nebo uvítací text.</p>
-    </section>
-
-    <!-- Zde můžete přidat další obsah a text -->
-
-    <div class="photo-container">
-        <!-- Příklad fotografií -->
-        <img class="photo" src="img1.jpeg" alt="Photo 1">
-        <img class="photo" src="img2.jpeg" alt="Photo 2">
-        <!-- Další fotografie... -->
+    <div class="mosaic-gallery">
+        <div class="mosaic-item" onclick="handleImageClick('img1.jpeg')">
+            <img src="img1.jpeg" alt="Image 1">
+        </div>
+         <div class="mosaic-item" onclick="handleImageClick('img2.jpeg')">
+            <img src="img2.jpeg" alt="Image 2">
+        </div>
+        <!-- Další obrázky mozaiky... -->
+        <!-- Další obrázky mozaiky... -->
     </div>
-
-    <div class="arrow-container">
-        <div class="arrow arrow-left" onclick="prevPhoto()">⬅️</div>
-        <div class="arrow arrow-right" onclick="nextPhoto()">➡️</div>
+    <div class="detail-view">
+        <span class="close-btn" onclick="closeDetailView()">✕</span>
+        <img src="" alt="Detail View">
     </div>
-
-    <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
-    <script>
-        const photos = document.querySelectorAll('.photo');
-        const photoContainer = document.querySelector('.photo-container');
-        let currentIndex = 0;
-
-        function nextPhoto() {
-            currentIndex = (currentIndex + 1) % photos.length;
-            updatePhoto();
-        }
-
-        function prevPhoto() {
-            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-            updatePhoto();
-        }
-
-        function updatePhoto() {
-            gsap.to(photoContainer, {
-                transform: `rotate(-45deg) translateX(calc(-50% + ${currentIndex * 100}vw)) translateY(calc(-50% + 2em))`,
-                duration: 0.5,
-                ease: 'power2.inOut'
-            });
-        }
-
-        function scrollToTop() {
-            gsap.to(window, { duration: 1, scrollTo: { y: 0 } });
-        }
-
-        window.addEventListener('unload', scrollToTop);
-    </script>
 </body>
 </html>
