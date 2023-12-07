@@ -21,14 +21,39 @@
         }
 
         section {
+            position: relative;
             padding: 2em;
+        }
+
+        .photo-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
         }
 
         .photo {
             width: 100%;
             height: 100vh;
             object-fit: cover;
-            display: none;
+            flex-shrink: 0;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
         }
     </style>
 </head>
@@ -44,46 +69,37 @@
 
     <!-- Zde můžete přidat další obsah a text -->
 
-    <!-- Příklad fotografií -->
-    <img class="photo" src="img1.jpeg" alt="Photo 1">
-    <img class="photo" src="img2.jpeg" alt="Photo 2">
-    <!-- Další fotografie... -->
+    <div class="photo-container">
+        <!-- Příklad fotografií -->
+        <img class="photo" src="path/to/photo1.jpg" alt="Photo 1">
+        <img class="photo" src="path/to/photo2.jpg" alt="Photo 2">
+        <!-- Další fotografie... -->
+    </div>
+
+    <div class="arrow arrow-left" onclick="prevPhoto()">⬅️</div>
+    <div class="arrow arrow-right" onclick="nextPhoto()">➡️</div>
 
     <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
     <script>
         const photos = document.querySelectorAll('.photo');
-        const content = document.getElementById('content');
-        let scrollCount = 0;
-        let lastScrollTop = 0;
+        const photoContainer = document.querySelector('.photo-container');
+        let currentIndex = 0;
 
-        function handleScroll() {
-            const st = window.scrollY || document.documentElement.scrollTop;
-
-            if (st > lastScrollTop) {
-                scrollCount++;
-                if (scrollCount === 1) {
-                    gsap.to(content, { opacity: 0, duration: 1, onComplete: showPhotos });
-                }
-            }
-
-            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        function nextPhoto() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            updatePhoto();
         }
 
-        function showPhotos() {
-            photos.forEach((photo, index) => {
-                gsap.to(photo, {
-                    opacity: 1,
-                    duration: 0.5,
-                    delay: index * 0.5,
-                    onComplete: () => {
-                        if (index === photos.length - 1) {
-                            setTimeout(() => {
-                                gsap.to(content, { opacity: 1, duration: 1 });
-                                scrollCount = 0;
-                            }, 1000);
-                        }
-                    }
-                });
+        function prevPhoto() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            updatePhoto();
+        }
+
+        function updatePhoto() {
+            gsap.to(photoContainer, {
+                scrollLeft: currentIndex * window.innerWidth,
+                duration: 0.5,
+                ease: 'power2.inOut'
             });
         }
 
@@ -91,7 +107,6 @@
             gsap.to(window, { duration: 1, scrollTo: { y: 0 } });
         }
 
-        document.addEventListener('scroll', handleScroll);
         window.addEventListener('unload', scrollToTop);
     </script>
 </body>
