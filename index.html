@@ -53,14 +53,20 @@
     <script>
         const photos = document.querySelectorAll('.photo');
         const content = document.getElementById('content');
-
         let scrollCount = 0;
+        let lastScrollTop = 0;
 
         function handleScroll() {
-            scrollCount++;
-            if (scrollCount === 1) {
-                gsap.to(content, { opacity: 0, duration: 1, onComplete: showPhotos });
+            const st = window.scrollY || document.documentElement.scrollTop;
+
+            if (st > lastScrollTop) {
+                scrollCount++;
+                if (scrollCount === 1) {
+                    gsap.to(content, { opacity: 0, duration: 1, onComplete: showPhotos });
+                }
             }
+
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
         }
 
         function showPhotos() {
