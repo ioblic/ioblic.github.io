@@ -29,15 +29,18 @@
         .photo-container {
             display: flex;
             overflow: hidden;
-            width: 100%;
+            width: 100vw; /* Full width of the viewport */
+            transform: rotate(-45deg) translateX(calc(-50% + 2em)) translateY(calc(-50% + 2em));
+            transform-origin: 0 0; /* Set the origin to the top-left corner */
             transition: transform 0.5s ease-in-out;
         }
 
         .photo {
-            width: 100%;
+            width: 100vh;
             height: 100vh;
             object-fit: cover;
             flex-shrink: 0;
+            transform: rotate(45deg); /* Rotate the image back to normal */
         }
 
         .arrow-container {
@@ -100,7 +103,7 @@
 
         function updatePhoto() {
             gsap.to(photoContainer, {
-                transform: `translateX(${-currentIndex * window.innerWidth}px)`,
+                transform: `rotate(-45deg) translateX(calc(-50% + ${currentIndex * 100}vw)) translateY(calc(-50% + 2em))`,
                 duration: 0.5,
                 ease: 'power2.inOut'
             });
