@@ -23,12 +23,14 @@
         section {
             position: relative;
             padding: 2em;
+            text-align: center;
         }
 
         .photo-container {
             display: flex;
             overflow: hidden;
             width: 100%;
+            transition: transform 0.5s ease-in-out;
         }
 
         .photo {
@@ -36,26 +38,23 @@
             height: 100vh;
             object-fit: cover;
             flex-shrink: 0;
-            transition: transform 0.5s ease-in-out;
+        }
+
+        .arrow-container {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
         }
 
         .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             font-size: 2em;
             color: #333;
             cursor: pointer;
-        }
-
-        .arrow-up {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .arrow-down {
-            left: 50%;
-            transform: translateX(-50%) rotate(180deg);
+            pointer-events: all;
         }
     </style>
 </head>
@@ -73,13 +72,15 @@
 
     <div class="photo-container">
         <!-- Příklad fotografií -->
-        <img class="photo" src="img1.jpeg" alt="Photo 1">
-        <img class="photo" src="img2.jpeg" alt="Photo 2">
+        <img class="photo" src="path/to/photo1.jpg" alt="Photo 1">
+        <img class="photo" src="path/to/photo2.jpg" alt="Photo 2">
         <!-- Další fotografie... -->
     </div>
 
-    <div class="arrow arrow-up" onclick="prevPhoto()">⬆️</div>
-    <div class="arrow arrow-down" onclick="nextPhoto()">⬇️</div>
+    <div class="arrow-container">
+        <div class="arrow arrow-left" onclick="prevPhoto()">⬅️</div>
+        <div class="arrow arrow-right" onclick="nextPhoto()">➡️</div>
+    </div>
 
     <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
     <script>
@@ -99,7 +100,7 @@
 
         function updatePhoto() {
             gsap.to(photoContainer, {
-                scrollLeft: currentIndex * window.innerWidth,
+                transform: `translateX(${-currentIndex * window.innerWidth}px)`,
                 duration: 0.5,
                 ease: 'power2.inOut'
             });
