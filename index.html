@@ -3,23 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mozaika Galerie</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="color-thief.js"></script>
-    <script src="script.js"></script>
+    <title>Tvoje Stránka</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #3498db; /* Barva hlavičky */
+            color: #ffffff; /* Barva textu v hlavičce */
+        }
+
+        #logo {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 50px; /* Prizpusobte velikost podle potreby */
+            height: 50px; /* Prizpusobte velikost podle potreby */
+        }
+
+        #logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px; /* Vzdálenost menu od hlavičky - upravte podle potřeby */
+            right: 20px;
+            background-color: #f1f1f1; /* Barva menu */
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333; /* Barva odkazů */
+        }
+
+        section {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="mosaic-gallery">
-        <div class="mosaic-item" onclick="handleImageClick('img1.jpeg')">
-            <img src="img1.jpeg" alt="Image 1">
+
+    <header>
+        <div id="logo">
+            <img src="path-to-your-logo.jpg" alt="Logo">
         </div>
-       <h1>Brzy!</h1>
-        <!-- Další obrázky mozaiky... -->
-        <!-- Další obrázky mozaiky... -->
-    </div>
-    <div class="detail-view">
-        <span class="close-btn" onclick="closeDetailView()">✕</span>
-        <img src="" alt="Detail View">
-    </div>
+        <nav>
+            <span class="menu-icon" onclick="toggleMenu()">&#x1F5C0;</span>
+            <div class="menu">
+                <!-- Ostatní odkazy na stránky zde -->
+                <a href="#">Odkaz 1</a>
+                <a href="#">Odkaz 2</a>
+                <a href="#">Odkaz 3</a>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>Vítejte na naší stránce!</h1>
+        <p>Zde můžete nalézt základní informace.</p>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+
 </body>
 </html>
