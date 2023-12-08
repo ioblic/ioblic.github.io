@@ -37,9 +37,10 @@
             object-fit: cover;
         }
 
-        nav {
+       nav {
             display: flex;
             align-items: center;
+       
         }
 
         .menu-icon {
@@ -53,10 +54,11 @@
             position: absolute;
             top: 60px; /* Vzdálenost menu od hlavičky - upravte podle potřeby */
             right: 20px;
-            background-color: #f1f1f1; /* Barva menu */
+            background-color: #8ca4fc; /* Barva menu */
             padding: 10px;
-            
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: (20%+10px);
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+      
         }
 
         .menu a {
@@ -66,7 +68,7 @@
             color: #333; /* Barva odkazů */
         }
 
-        section {
+       section {
             margin-top: 100px;
             margin-left: 10%;
         }
@@ -79,19 +81,21 @@
             <img src="logo.png" alt="Logo">
         </div>
         <nav>
-            <span class="menu-icon" onclick="toggleMenu()">&#x1F5C0;</span>
+            <span class="menu-icon" onclick="toggleMenu()">*️⃣</span>
             <div class="menu">
-                <!-- Ostatní odkazy na stránky zde -->
+               <!-- Ostatní odkazy na stránky zde -->
+                <a onclick="toggleMenu(closed)">✖️</a>
                 <a href="#">O mně</a>
                 <a href="#">Portfolio</a>
-                <a href="#"></a>
+                
             </div>
         </nav>
     </header>
 
     <section>
-        <h1>Webové portfolio</h1>
-        <p>Webové portfolio.</p>
+        <h1>Zde bude <b>Webové portfolio</b></h1>
+        <p>Prozatím tu ale není nic!</p>
+
     </section>
 
     <script>
