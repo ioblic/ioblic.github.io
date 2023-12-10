@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container" id="galleryContainer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const galleryContainer = document.getElementById("galleryContainer");
+
+            // Add images to the gallery
+            const imageUrls = [
+                "image1.jpg",
+                "image2.jpg",
+                "image3.jpg",
+                // Add more image URLs as needed
+            ];
+
+            imageUrls.forEach((imageUrl, index) => {
+                const imageElement = document.createElement("img");
+                imageElement.src = imageUrl;
+                imageElement.alt = `Image ${index + 1}`;
+
+                const galleryItem = document.createElement("div");
+                galleryItem.classList.add("gallery-item");
+                galleryItem.appendChild(imageElement);
+
+                galleryItem.addEventListener("click", function() {
+                    // Handle image click (you can open a modal or link to a separate page)
+                    console.log(`Clicked on image ${index + 1}`);
+                });
+
+                galleryContainer.appendChild(galleryItem);
+            });
+
+            // Add videos to the gallery
+            const videoUrls = [
+                "video1.mp4",
+                "video2.mp4",
+                "video3.mp4",
+                // Add more video URLs as needed
+            ];
+
+            videoUrls.forEach((videoUrl, index) => {
+                const videoElement = document.createElement("video");
+                videoElement.src = videoUrl;
+                videoElement.controls = true;
+                videoElement.setAttribute("preload", "metadata"); // Preload video metadata for better user experience
+
+                const galleryItem = document.createElement("div");
+                galleryItem.classList.add("gallery-item");
+                galleryItem.appendChild(videoElement);
+
+                galleryItem.addEventListener("click", function() {
+                    // Handle video click (you can play the video or open a modal)
+                    console.log(`Clicked on video ${index + 1}`);
+                });
+
+                galleryContainer.appendChild(galleryItem);
+            });
+        });
+    </script>
+</body>
+</html>
