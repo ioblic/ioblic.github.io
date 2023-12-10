@@ -3,91 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>My Web Presentation</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
         }
 
-        .gallery-item {
-            margin: 10px;
+        .mySlides {
+            display: none;
+        }
+
+        img, video {
+            width: 100%;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
             cursor: pointer;
         }
 
-        .gallery-item img,
-        .gallery-item video {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .caption-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 15px;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="gallery-container" id="galleryContainer"></div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const galleryContainer = document.getElementById("galleryContainer");
+<div class="slideshow-container">
+    <div class="mySlides">
+        <img src="image1.jpg" alt="Image 1">
+        <div class="caption-container">
+            <p>Caption for Image 1</p>
+        </div>
+    </div>
 
-            // Add images to the gallery
-            const imageUrls = [
-                "image1.jpg",
-                "image2.jpg",
-                "image3.jpg",
-                // Add more image URLs as needed
-            ];
+    <div class="mySlides">
+        <video controls>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="caption-container">
+            <p>Caption for Video 1</p>
+        </div>
+    </div>
 
-            imageUrls.forEach((imageUrl, index) => {
-                const imageElement = document.createElement("img");
-                imageElement.src = imageUrl;
-                imageElement.alt = `Image ${index + 1}`;
+    <!-- Add more slides as needed -->
 
-                const galleryItem = document.createElement("div");
-                galleryItem.classList.add("gallery-item");
-                galleryItem.appendChild(imageElement);
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
 
-                galleryItem.addEventListener("click", function() {
-                    // Handle image click (you can open a modal or link to a separate page)
-                    console.log(`Clicked on image ${index + 1}`);
-                });
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-                galleryContainer.appendChild(galleryItem);
-            });
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
 
-            // Add videos to the gallery
-            const videoUrls = [
-                "video1.mp4",
-                "video2.mp4",
-                "video3.mp4",
-                // Add more video URLs as needed
-            ];
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
 
-            videoUrls.forEach((videoUrl, index) => {
-                const videoElement = document.createElement("video");
-                videoElement.src = videoUrl;
-                videoElement.controls = true;
-                videoElement.setAttribute("preload", "metadata"); // Preload video metadata for better user experience
+    function showSlides(n) {
+        let i;
+        const slides = document.getElementsByClassName("mySlides");
+        const dots = document.getElementsByClassName("dot");
 
-                const galleryItem = document.createElement("div");
-                galleryItem.classList.add("gallery-item");
-                galleryItem.appendChild(videoElement);
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
 
-                galleryItem.addEventListener("click", function() {
-                    // Handle video click (you can play the video or open a modal)
-                    console.log(`Clicked on video ${index + 1}`);
-                });
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
 
-                galleryContainer.appendChild(galleryItem);
-            });
-        });
-    </script>
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>
+
 </body>
 </html>
