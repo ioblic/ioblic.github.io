@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.page-container {
+    padding-top: 80px; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #A2C3E1; 
+    color: #ffff1f; 
+    height: 60px;
+    position: sticky;
+    top: 50px;
+    z-index: 1000;
+}
+
+#logo {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px; 
+    height: 150px; 
+    box-shadow: 1px 1px 4px #000000;
+    
+}
+
+#logo img {
+    width: 101%;
+    height: 100%;
+margin: -1px;
+    object-fit: cover;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+
+}
+
+.menu-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #81A0BB;
+    padding: 10px;
+    width: (20%+10px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+section {
+    margin-top: 100px;
+    margin-left: 10%;
+}
+.menuicon {
+    height: 40px;
+    width: 37px;
+    margin-top: 6px;
+}
+a:visited {
+
+    color: black;
+    text-decoration: rgb(255, 255, 255);
+}
+a:link {
+
+    color: black;
+    text-decoration: rgb(255, 255, 255);
+}
+
+
+.closemenu {
+margin-left: 90%;
+}
+
+.kontakt {
+   display: block;
+   position: fixed;
+bottom: 5%;
+/*border-style:groove;*/ /*ZOBRAZÍ POUŽITOU TABULKU*/
+
+}
+.radek {
+margin-bottom: 10px;
+
+}
+.name{
+    width: 1%;
+}
+.closebutt {
+  position: relative;
+    width: 15px;
+    left: -15px;
+}

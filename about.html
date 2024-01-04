@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O MNĚ ioblic | Jonáš Ibl</title>
+<link rel="stylesheet" href="styl.css">
+</head>
+<body>
+
+    <header>
+        <div id="logo">
+            <a href="index.html"> <img src="img/logo.png" alt="Logo"></a>
+        </div>
+        <nav>
+            <script>toggleMenu()</script>
+            
+            <span class="menu-icon" onclick="toggleMenu()"><img class="menuicon" src="img/menuicon.png" alt=""></span>
+            
+            <div class="menu">
+               <!-- Ostatní odkazy na stránky zde -->
+               <p class="closemenu" onclick="toggleMenu(closed)"><img src="img/close.png" alt="X" class="closebutt"></p>
+                <a href="portfolio.html">📖 Webové portfolio</a>
+                <a href="https://www.csfd.cz/uzivatel/906488-ioblic/hodnoceni/?type=0">📽️ ČSFD</a>
+                <a href="https://instagram.com/jonas.ibl?igshid=NzZlODBkYWE4Ng%3D%3D&utm_source=qr">📎 Threads</a>
+                
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <h1>O mně</h1>
+        <p>Věnuji se:</p> <li> filmu </li><li> fotografii </li>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Repellendus blanditiis maiores culpa modi <br> error ratione quaerat tenetur,
+     perspiciatis, porro labore laudantium hic quam iusto voluptatem,
+      sit quidem a autem distinctio!</p>
+
+      <table class="kontakt">
+        <tr class="radek">
+    <td class="name" >
+       <a href="https://www.instagram.com/@jonas.ibl">@jonas.ibl</a> 
+    </td>
+    <td class="name" >
+    |
+    <td class="name">
+        <a href="tel:+420123456789">+420 123456789</a>
+    </td>
+    <td class="name" >
+        |  
+    <td class="name">
+    <a href="mailto:jonas.ibl@icloud.com"> jonas.ibl@icloud.com</a>   
+    </td>
+    </tr>
+    </table>
+
+
+    </section>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+    
+</body>
+</html>
