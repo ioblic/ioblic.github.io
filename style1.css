@@ -28,6 +28,7 @@
         
         .image-container {
             position: relative;
+		content-visibility: auto;
         }
         
         .gallery img {
