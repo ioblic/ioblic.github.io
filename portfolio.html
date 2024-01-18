@@ -25,6 +25,13 @@
     </nav>
 </header>
 <body>
+    <div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+      </div>
+      
+      <div id="container">
+  
    <div class="page-container"></div>
 
     <div class="gallery" onclick="openLightbox(event)">
@@ -72,7 +79,7 @@
     
     </div>
 
-  
+</div>
     <div id="lightbox">
     
         <span id="close-btn" onclick="closeLightbox()">&times;</span>
@@ -171,7 +178,42 @@
             var menu = document.querySelector('.menu');
             menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
         }
-        
+        const el = (sel, par) => (par || document).querySelector(sel);
+
+function loadbar() {
+  const elOverlay = el("#overlay");
+  const elProgress = el("#progress");
+  const elProgstat = el("#progstat");
+  const images = document.images;
+  const tot = images.length;
+  let c = 0;
+    
+  if (tot == 0) return doneLoading();
+
+  function imgLoaded() {
+    c += 1;
+    const perc = Math.floor(100 / tot * c) + "%";
+    elProgress.style.width = perc;
+    elProgstat.textContent = `Loading ${perc}`;
+    if (c === tot) return doneLoading();
+  }
+
+  function doneLoading() {
+    elOverlay.style.opacity = 0;
+    setTimeout(() => {
+      elOverlay.style.display = "none";
+    }, 1200);
+  }
+  
+  [...images].forEach(img => {
+    const tmpImg = new Image();
+    tmpImg.onload = imgLoaded;
+    tmpImg.onerror = imgLoaded;
+    tmpImg.src = img.src;
+  });
+}
+
+addEventListener('DOMContentLoaded', loadbar, false);   
       
 
     </script>
